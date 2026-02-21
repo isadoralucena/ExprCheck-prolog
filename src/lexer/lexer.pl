@@ -65,26 +65,37 @@ take_integer([H|T], [H|R], Rest) :-
 take_integer(Rest, [], Rest) :- !.
 
 % finish_number decide se é real ou int, e unifica o tok correspondente
-finish_number(IntegerPart, ['.', D|T], tok_real(N), Rest) :-
+% detecta ponto e um digito: é real
+finish_number(IntegerPart, ['.', D|T], Tok, AfterReal) :-
     char_type(D, digit),
-    take_frac(T, FracPart, Rest),
-    append(IntegerPart, ['.', D|FracPart], Chars),
-    number_from_chars(Chars, N), !.
+    take_frac(T, FracPart, AfterFrac),
+    append(IntegerPart, ['.', D|FracPart], RealChars),
+    finish_real(RealChars, AfterFrac, Tok, AfterReal), !.
 
-finish_number(_, ['.'|T], _, _) :-
-    string_chars(Occ, ['.'|T]),
+% detecta ponto sozinho: erro
+finish_number(IntegerPart, ['.'|_], _, _) :-
+    number_from_chars(IntegerPart, Int),
+    number_string(Int, IntStr),
+    string_concat(IntStr, ".", Occ),
     raise_lexer_error("Número real mal formado (esperava-se números após o ponto)", Occ), !.
 
+% não achou ponto: é inteiro
 finish_number(IntegerPart, Rest, tok_int(N), Rest) :-
     number_from_chars(IntegerPart, N), !.
 
-% take_frac obtem a parte fracionária de um número real e unifica o resto
+% take_frac obtem a parte fracionária de um número real e unifica o resto.
 take_frac([H|T], [H|R], Rest) :-
     char_type(H, digit),
     take_frac(T, R, Rest), !.
 
-take_frac(['.'|Rest], _, Rest) :-
-    string_chars(Occ, ['.'|Rest]),
+take_frac(Rest, [], Rest) :- !.
+
+% finalização do real: detecta ponto extra
+finish_real(RealChars, ['.'|_], _, _) :-
+    string_chars(RealString, RealChars),
+    string_concat(RealString, ".", Occ),
     raise_lexer_error("Número real mal formado (múltiplos pontos)", Occ), !.
 
-take_frac(Rest, [], Rest) :- !.
+finish_real(Chars, Rest, tok_real(N), Rest) :-
+    number_from_chars(Chars, N), !.
+
