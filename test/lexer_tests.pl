@@ -38,7 +38,7 @@ valid_input("1**2", [tok_int(1), tok_star, tok_star, tok_int(2), tok_eof]).
 valid_input("1//2", [tok_int(1), tok_slash, tok_slash, tok_int(2), tok_eof]).
 valid_input("1^^2", [tok_int(1), tok_caret, tok_caret, tok_int(2), tok_eof]).
 
-invalid_input(".", lexer_error("Cara inválido", ".")).
+invalid_input(".", lexer_error("Caractere inválido", ".")).
 invalid_input("..", lexer_error("Caractere inválido", ".")).
 invalid_input("...", lexer_error("Caractere inválido", ".")).
 invalid_input(".1", lexer_error("Caractere inválido", ".")).
