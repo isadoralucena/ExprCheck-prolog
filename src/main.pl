@@ -1,4 +1,4 @@
-:- module(cli, []).
+:- module(main, []).
 :- use_module(lexer/lexer).
 :- use_module(lexer/token).
 
