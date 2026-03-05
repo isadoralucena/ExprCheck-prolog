@@ -7,9 +7,6 @@
 ![Institution](https://img.shields.io/badge/Institution-UFCG-009639?style=for-the-badge)
 
 <p align="center"> <b>Projeto desenvolvido para a disciplina de Paradigmas de Linguagens de Programação.</b> </p> </div>
-<p align="center">
-  <a href="docs/readme_us.md">Read in English</a>
-</p>
 
 </div>
 
@@ -137,6 +134,7 @@ Execute a validação de uma expressão:
 - [Isadora Beatriz Lucena de Medeiros](https://github.com/isadoralucena)
 - [João Henrique Silva Lima](https://github.com/limajoaohs)
 - [Matheus Palmeira Leite Rocha](https://github.com/Mapalmeira)
+
 
 
 
