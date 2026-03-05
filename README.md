@@ -106,24 +106,23 @@ cd ExprCheck
 
 ### Utilização
 
-O projeto oferece dois modos de execução:
-
-Abra o interpretador Prolog:
-
-```bash
-swipl
-```
+O sistema utiliza o **SWI-Prolog**. Para que os módulos sejam carregados corretamente, a execução deve partir da pasta `src`.
 
 Carregue o arquivo principal do projeto:
 
 ```bash
-?- consult('main.pl').
+?- swipl main.pl
 ```
 
-Execute a validação de uma expressão:
+O menu interativo será iniciado. Siga os prompts na tela para validar as expressões:
 
 ```bash
-?- Digite a expressão a validar: (1 + 2) * 3 ^ 2
+Digite a expressão a validar: (1 + 2) * 3 ^ 2
+
+Selecione o nível de verificação:
+A) Léxico
+B) Sintático
+Escolha (A/B): B
 ```
 
 ---
