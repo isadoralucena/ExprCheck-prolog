@@ -106,9 +106,14 @@ cd ExprCheck
 
 ### Usage
 
-The system uses **SWI-Prolog**. In order for the modules to be loaded correctly, execution must start from the `src` folder.
+The system uses **SWI-Prolog**. For the modules to load correctly, execution must start from the `src` folder.
 
-Load the project's main file:
+The project provides two execution modes:
+
+**1. Interactive Mode (CLI)**  
+Allows expressions to be validated manually through the interactive menu.
+
+Load the main project file:
 
 ```bash
 swipl main.pl
@@ -123,6 +128,14 @@ Selecione o nível de verificação:
 A) Léxico
 B) Sintático
 Escolha (A/B): B
+```
+**2. Test Mode**  
+It is also possible to run the automated project tests, located in the test folder.
+
+Run the tests with the command:
+
+```bash
+swipl -g "run_parser_tests, halt" test/parser_tests.pl
 ```
 
 ---

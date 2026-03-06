@@ -108,6 +108,11 @@ cd ExprCheck
 
 O sistema utiliza o **SWI-Prolog**. Para que os módulos sejam carregados corretamente, a execução deve partir da pasta `src`.
 
+O projeto oferece dois modos de execução:
+
+**1. Modo Interativo (CLI)**  
+Permite validar expressões manualmente através do menu interativo.
+
 Carregue o arquivo principal do projeto:
 
 ```bash
@@ -124,6 +129,17 @@ A) Léxico
 B) Sintático
 Escolha (A/B): B
 ```
+
+**2. Modo de Testes**
+
+Também é possível executar os **testes automatizados do projeto**, presentes na pasta `test`.
+
+Execute os testes com o comando:
+
+```bash
+swipl -g "run_parser_tests, halt" test/parser_tests.pl
+```
+
 
 ---
 
