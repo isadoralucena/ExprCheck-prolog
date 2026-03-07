@@ -3,5 +3,5 @@
 :- use_module(unit_test).
 
 run_all_tests :-
-    unit_test:run_suite(parser_tests),
-    unit_test:run_suite(lexer_tests).
+    run_suite(parser_tests),
+    run_suite(lexer_tests).
