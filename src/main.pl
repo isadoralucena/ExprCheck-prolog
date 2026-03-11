@@ -4,7 +4,7 @@
 :- use_module(parser/parser).
 
 :- encoding(utf8).
-:- initialization(main).
+:- initialization(main, main).
 
 main :-
     print_header,
