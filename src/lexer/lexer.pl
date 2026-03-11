@@ -13,7 +13,7 @@ raise_lexer_error(Msg, Occ) :-
     throw(lexer_error(Msg, Occ)).
 
 show_lexer_error(lexer_error(Msg, Occ), Text) :-
-    string_concat("Erro léxico: ", Msg, T1),
+    string_concat("[Erro léxico] ", Msg, T1),
     string_concat(T1, ": ", T2),
     string_concat(T2, Occ, Text).
     

@@ -10,6 +10,7 @@ main :-
     print_header,
     loop.
 
+% Loop principal da aplicação
 loop :-
     prompt("\nDigite a expressão a validar: ", Expr),
     choose_mode(Expr),
@@ -40,6 +41,7 @@ ask_again(Result) :-
     string_upper(Clean, Answer),
     ( Answer = "Y" -> Result = yes ; Result = no ).
 
+% Execução das validações
 run_lexical(Expr) :-
     writeln("\n[Validação Léxica]"),
     catch(
@@ -48,9 +50,7 @@ run_lexical(Expr) :-
           print_tokens_tree(Tokens)
         ),
         Error,
-        ( writeln("INVÁLIDO - Erro Léxico"),
-          print_error(Error)
-        )
+        print_error(Error)
     ).
 
 run_syntactic(Expr) :-
@@ -59,18 +59,29 @@ run_syntactic(Expr) :-
           writeln("\n[Validação Léxica]"),
           writeln("VÁLIDO - Tokens"),
           print_tokens_tree(Tokens),
-          
+
           once(parse(Tokens, AST)),
           writeln("\n[Validação Sintática]"),
           writeln("VÁLIDO - Árvore Sintática (AST)"),
           print_ast_tree("", true, AST)
         ),
         Error,
-        ( writeln("\nINVÁLIDO - Erro"),
-          print_error(Error)
-        )
+        print_error(Error)
     ).
 
+% Impressão de erros
+print_error(lexer_error(Msg, Occ)) :-
+    show_lexer_error(lexer_error(Msg, Occ), Text),
+    format("    ~s~n", [Text]).
+
+print_error(parser_error(Term)) :-
+    show_parser_error(parser_error(Term), Text),
+    format("    ~s~n", [Text]).
+
+print_error(Error) :-
+    format("    ~w~n", [Error]).
+
+% Impressão da árvore sintática (AST)
 print_ast_tree(Prefix, IsLast, AST) :-
     get_label(AST, Label),
     get_branch(IsLast, Branch),
@@ -113,6 +124,7 @@ get_children(pow(L, R), [L, R]).
 get_children(neg(E), [E]).
 get_children(pos(E), [E]).
 
+% Impressão de tokens
 print_tokens_tree([]).
 print_tokens_tree([Last]) :-
     show_token(Last, Text),
@@ -122,9 +134,7 @@ print_tokens_tree([Tok|Rest]) :-
     format("    ├── ~w~n", [Text]),
     print_tokens_tree(Rest).
 
-print_error(Error) :-
-    format("    ~w~n", [Error]).
-
+% Interface
 print_header :-
     writeln("========================================================"),
     writeln("            === Bem-vindo ao ExprCheck ==="),
