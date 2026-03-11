@@ -101,7 +101,7 @@ git clone https://github.com/Mapalmeira/ExprCheck-prolog
 2. Acesse o diretório do projeto:
 
 ```bash
-cd ExprCheck
+cd ExprCheck-prolog
 ```
 
 ### Utilização
@@ -132,9 +132,9 @@ Escolha (A/B): B
 
 **2. Modo de Testes**
 
-Também é possível executar os testes automatizados do projeto*
+Também é possível executar os testes automatizados do projeto
 
-**Execute todos os comandos a partir da raiz do projeto.**
+> **Importante:** todos os comandos devem ser executados a partir da **raiz do projeto**.
 
 Execute todos os testes com um único comando:
 
@@ -163,3 +163,4 @@ swipl -g "run_lexer_tests, halt" test/lexer_tests.pl
 - [Isadora Beatriz Lucena de Medeiros](https://github.com/isadoralucena)
 - [João Henrique Silva Lima](https://github.com/limajoaohs)
 - [Matheus Palmeira Leite Rocha](https://github.com/Mapalmeira)
+
