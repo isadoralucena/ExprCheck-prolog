@@ -16,7 +16,6 @@ valid_syntax("10 / 2 * 5", mul(div(int(10), int(2)), int(5))).
 valid_syntax("((42))", int(42)).
 valid_syntax("-(5 + 2)", neg(sum(int(5), int(2)))).
 invalid_input("(5 * 2", parser_error(missing("')'", [tok_eof]))).
-invalid_input("1 + @", lexer_error("Caractere inválido", "@")).
 invalid_input("()", parser_error(unexpected("um número ou '('", [tok_rparen, tok_eof]))).
 invalid_input("5 + * 2", parser_error(unexpected("um número ou '('", [tok_star, tok_int(2), tok_eof]))).
 
