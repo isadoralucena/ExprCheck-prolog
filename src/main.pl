@@ -55,13 +55,14 @@ run_lexical(Expr) :-
 
 run_syntactic(Expr) :-
     catch(
-        ( once(lexer_string(Expr, Tokens)),
+        ( 
           writeln("\n[Validação Léxica]"),
+          once(lexer_string(Expr, Tokens)),
           writeln("VÁLIDO - Tokens"),
           print_tokens_tree(Tokens),
 
-          once(parse(Tokens, AST)),
           writeln("\n[Validação Sintática]"),
+          once(parse(Tokens, AST)),
           writeln("VÁLIDO - Árvore Sintática (AST)"),
           print_ast_tree("", true, AST)
         ),
